@@ -1,0 +1,67 @@
+/* Additional mobile optimization styles */
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  .hero {
+    padding: 2rem 0;
+  }
+  
+  .guide-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .module-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .module-sidebar {
+    position: relative;
+    top: 0;
+    margin-bottom: 2rem;
+  }
+  
+  .popup {
+    width: 95%;
+    padding: 1.5rem;
+  }
+  
+  .popup-columns {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .guide-overview {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .module-navigation {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .module-navigation button {
+    width: 100%;
+  }
+  
+  .expandable-header h4 {
+    font-size: 1rem;
+    margin-bottom: 0;
+  }
+  
+  .footer-container {
+    grid-template-columns: 1fr;
+  }
+}
