@@ -1,0 +1,27 @@
+{
+  "name": "how-toguides-prototype",
+  "version": "1.0.0",
+  "description": "Modular content structure with lead generation for how-toguides.com",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "keywords": [
+    "how-to",
+    "guides",
+    "chatgpt",
+    "ai",
+    "modular",
+    "content"
+  ],
+  "author": "how-toguides.com",
+  "license": "ISC",
+  "dependencies": {
+    "next": "^14.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
