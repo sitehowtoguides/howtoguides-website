@@ -1,11 +1,9 @@
-import Header from '../components/Header';
-import Footer from '../components/Footer';
 import Link from 'next/link';
 
 export default function Home() {
   return (
     <div>
-      <Header />
+      {/* Remove Header and Footer components since they're now handled by _app.js */}
       
       <section className="hero">
         <div className="container">
@@ -121,7 +119,7 @@ export default function Home() {
         </div>
       </section>
       
-      <Footer />
+      {/* Remove Footer component since it's now handled by _app.js */}
     </div>
   );
 }
