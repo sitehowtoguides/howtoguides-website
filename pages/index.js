@@ -31,12 +31,24 @@ export default function Home() {
               </Link>
             </div>
           </div>
-          
+    
+          <div className="guide-card">
+            <div className="guide-card-content">
+              <h3 className="guide-card-title">How to Use DALL-E: Complete Tutorial</h3>
+                <p className="guide-card-description">
+                  Learn how to create amazing AI-generated images with OpenAI's DALL-E
+                </p>
+                <Link href="/guides/dalle-tutorial" className="btn">
+                Read Guide
+              </Link>
+            </div>
+          </div>
+
           <div className="guide-card">
             <div className="guide-card-content">
               <h3 className="guide-card-title">How to Use Midjourney: Step-by-Step</h3>
               <p className="guide-card-description">
-                Learn to create stunning AI-generated images with Midjourney
+                Learn how to create stunning AI-generated images with Midjourney
               </p>
               <Link href="/guides/midjourney-tutorial" className="btn">
                 Read Guide
