@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import styles from '../styles/Footer.module.css'; // Adjust path if needed
 
 export default function Footer() {
@@ -8,35 +7,8 @@ export default function Footer() {
       <div className={styles.container}>
         <div className={styles.footerGrid}>
           <div className={styles.footerLogo}>
-            {/* SVG Logo Implementation - Smaller Version for Footer */}
-            <svg xmlns="http://www.w3.org/2000/svg" width="120" height="50" viewBox="0 0 300 120" className={styles.logoSvg}>
-              {/* Compass Circle */}
-              <circle cx="60" cy="60" r="40" fill="none" stroke="#000000" strokeWidth="3"/>
-              
-              {/* Compass Markings */}
-              <line x1="60" y1="25" x2="60" y2="30" stroke="#000000" strokeWidth="3"/>
-              <line x1="60" y1="90" x2="60" y2="95" stroke="#000000" strokeWidth="3"/>
-              <line x1="25" y1="60" x2="30" y2="60" stroke="#000000" strokeWidth="3"/>
-              <line x1="90" y1="60" x2="95" y2="60" stroke="#000000" strokeWidth="3"/>
-              
-              {/* Compass Needle */}
-              <path d="M60,35 L55,75 L60,70 L65,75 Z" fill="#000000"/>
-              <path d="M60,35 L60,70" fill="none" stroke="#D4AF37" strokeWidth="5"/>
-              
-              {/* Text */}
-              <text x="115" y="50" fontFamily="Merriweather, serif" fontSize="28" fontWeight="normal" fill="#000000">how-to</text>
-              <text x="115" y="85" fontFamily="Merriweather, serif" fontSize="35" fontWeight="normal" fill="#000000">guides.com</text>
-            </svg>
-            
-            {/* Fallback Image (optional)  */}
-            <span className={styles.fallbackLogo} style={{ display: 'none' }}>
-              <Image 
-                src="/images/logo/logo-footer.svg" 
-                alt="How-ToGuides.com" 
-                width={120} 
-                height={50} 
-              />
-            </span>
+            {/* Simple text logo instead of SVG */}
+            <h3 className={styles.logoText}>How-ToGuides.com</h3>
             
             {/* Keep your existing tagline */}
             <p className={styles.tagline}>Master AI tools with step-by-step guides and tutorials.</p>
