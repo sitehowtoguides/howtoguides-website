@@ -1,20 +1,11 @@
 import Link from 'next/link';
-// Removed Next.js Image import
-import styles from '../styles/Header.module.css'; // Adjust path if needed
 
 export default function Header() {
   return (
     <header className="header">
       <div className="container header-container">
         <Link href="/" className="logo">
-          {/* Using standard HTML img tag instead of Next.js Image component */}
-          <img 
-            src="/images/logo/logo-main.svg" 
-            alt="How-ToGuides.com" 
-            width="200" 
-            height="80" 
-            style={{ maxWidth: '100%', height: 'auto' }}
-          />
+          How-ToGuides.com
         </Link>
         <nav className="nav">
           <Link href="/" className="nav-link">
