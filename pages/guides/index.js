@@ -22,7 +22,7 @@ export default function AIGuides() {
       id: 'gemini',
       title: 'Gemini AI',
       description: 'Master Google\'s multimodal AI assistant with comprehensive tutorials',
-      image: '/images/icons/gemini-icon.svg',
+      image: '/images/logos/gemini-logo.png',
       color: '#8e44ad',
       count: 1,
       featured: true,
@@ -34,7 +34,7 @@ export default function AIGuides() {
       id: 'midjourney',
       title: 'Midjourney',
       description: 'Create stunning AI-generated artwork with detailed Midjourney guides',
-      image: '/images/icons/midjourney-icon.svg',
+      image: '/images/logos/midjourney-logo.png',
       color: '#3498db',
       count: 1,
       guides: [
@@ -45,7 +45,7 @@ export default function AIGuides() {
       id: 'dalle',
       title: 'DALL-E',
       description: 'Generate amazing images with OpenAI\'s DALL-E image generation model',
-      image: '/images/icons/dalle-icon.svg',
+      image: '/images/logos/dalle-logo.png',
       color: '#e74c3c',
       count: 1,
       guides: [
@@ -56,7 +56,7 @@ export default function AIGuides() {
       id: 'content-creation',
       title: 'Content Creation',
       description: 'Learn how to leverage AI tools for creating high-quality content',
-      image: '/images/icons/content-icon.svg',
+      image: '/images/logos/content-creation-logo.png',
       color: '#2ecc71',
       count: 2,
       guides: [
@@ -68,7 +68,7 @@ export default function AIGuides() {
       id: 'image-generation',
       title: 'Image Generation',
       description: 'Master the art of creating stunning visuals with AI image generators',
-      image: '/images/icons/image-icon.svg',
+      image: '/images/logos/image-generation-logo.png',
       color: '#f39c12',
       count: 2,
       guides: [
@@ -80,7 +80,7 @@ export default function AIGuides() {
       id: 'coding-assistant',
       title: 'Coding Assistant',
       description: 'Enhance your programming workflow with AI coding assistants',
-      image: '/images/icons/code-icon.svg',
+      image: '/images/logos/coding-assistant-logo.png',
       color: '#34495e',
       count: 0,
       comingSoon: true,
