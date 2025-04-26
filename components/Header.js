@@ -1,9 +1,13 @@
 import Link from 'next/link';
 
-export default function Header() {
+export default function Header({ isHomePage }) {
+  // Apply different classes based on whether this is the home page
+  const headerClass = isHomePage ? "header home-header" : "header";
+  const containerClass = isHomePage ? "container home-header-container" : "container header-container";
+  
   return (
-    <header className="header">
-      <div className="container header-container">
+    <header className={headerClass}>
+      <div className={containerClass}>
         <Link href="/" className="logo">
           How-ToGuides.com
         </Link>
