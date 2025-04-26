@@ -9,7 +9,14 @@ export default function Header({ isHomePage }) {
     <header className={headerClass}>
       <div className={containerClass}>
         <Link href="/" className="logo">
-          How-ToGuides.com
+          {/* Logo implementation using standard HTML img tag */}
+          <img 
+            src="/images/logo/logo-main.svg" 
+            alt="How-ToGuides.com" 
+            width="180" 
+            height="60" 
+            style={{ maxWidth: '100%', height: 'auto' }}
+          />
         </Link>
         <nav className="nav">
           <Link href="/" className="nav-link">
