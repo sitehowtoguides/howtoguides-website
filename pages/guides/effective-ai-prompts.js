@@ -1,6 +1,4 @@
 import { useState } from 'react';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
 import ModuleNavigation from '../../components/ModuleNavigation';
 import ExpandableSection from '../../components/ExpandableSection';
 import KnowledgeCheck from '../../components/KnowledgeCheck';
@@ -50,7 +48,6 @@ export default function EffectiveAIPromptsGuide() {
   
   return (
     <div>
-      <Header />
       
       <div className="container">
         <div className="hero">
@@ -418,7 +415,6 @@ Format the response as a table with categories for cost, environmental impact, m
         />
       )}
       
-      <Footer />
     </div>
   );
 }
