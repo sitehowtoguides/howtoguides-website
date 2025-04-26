@@ -17,6 +17,9 @@ function MyApp({ Component, pageProps }) {
         <meta charSet="utf-8" />
         <title>How-ToGuides.com - Master AI Tools with Step-by-Step Guides</title>
         <meta name="description" content="Comprehensive tutorials for AI tools including ChatGPT, Midjourney, DALL-E, and more. Learn how to use AI effectively with our step-by-step guides." />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
+        <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet" />
       </Head>
       
       {/* Only show Header if not on home page */}
@@ -27,7 +30,7 @@ function MyApp({ Component, pageProps }) {
       {/* Only show Footer if not on home page */}
       {!isHomePage && <Footer />}
     </>
-  );
+  ) ;
 }
 
 export default MyApp;
