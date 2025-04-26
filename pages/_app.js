@@ -19,15 +19,15 @@ function MyApp({ Component, pageProps }) {
         <meta name="description" content="Comprehensive tutorials for AI tools including ChatGPT, Midjourney, DALL-E, and more. Learn how to use AI effectively with our step-by-step guides." />
       </Head>
       
-      {/* Only show Header if not on home page */}
-      {!isHomePage && <Header />}
+      {/* Always show Header, but with conditional class for home page */}
+      <Header isHomePage={isHomePage} />
       
       <Component {...pageProps} />
       
-      {/* Only show Footer if not on home page */}
-      {!isHomePage && <Footer />}
+      {/* Always show Footer, but with conditional class for home page */}
+      <Footer isHomePage={isHomePage} />
     </>
-  ) ;
+  );
 }
 
 export default MyApp;
