@@ -43,7 +43,19 @@ export default function Home() {
               </Link>
             </div>
           </div>
-          
+    
+          <div className="guide-card">
+           <div className="guide-card-content">
+              <h3 className="guide-card-title">How to Use Gemini AI: Beginner's Tutorial</h3>
+              <p className="guide-card-description">
+                Master Google's powerful multimodal AI assistant with our comprehensive guide
+               </p>
+               <Link href="/guides/gemini-ai-tutorial" className="btn">
+                 Read Guide
+                </Link>
+              </div>
+            </div>
+
           <div className="guide-card">
             <div className="guide-card-content">
               <h3 className="guide-card-title">How to Write Effective AI Prompts</h3>
