@@ -13,13 +13,8 @@ export default function Home() {
 
       <header className={styles.header}>
         <div className={styles.logo}>
-          {/* Logo as an image instead of inline SVG to avoid syntax issues */}
-          <img 
-            src="/images/logo/logo-main.svg" 
-            alt="How-ToGuides.com" 
-            width={250} 
-            height={100} 
-          />
+          {/* Temporary text logo until we resolve the image issues */}
+          <h1>How-ToGuides.com</h1>
         </div>
         <nav className={styles.nav}>
           <Link href="/guides" className={styles.navLink}>AI Guides</Link>
@@ -64,13 +59,8 @@ export default function Home() {
       <footer className={styles.footer}>
         <div className={styles.footerContent}>
           <div className={styles.footerLogo}>
-            {/* Logo as an image instead of inline SVG */}
-            <img 
-              src="/images/logo/logo-footer.svg" 
-              alt="How-ToGuides.com" 
-              width={120} 
-              height={50} 
-            />
+            {/* Temporary text logo until we resolve the image issues */}
+            <h3>How-ToGuides.com</h3>
             <p className={styles.tagline}>Master AI tools with step-by-step guides and tutorials.</p>
           </div>
           
