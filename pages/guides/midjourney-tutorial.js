@@ -50,7 +50,6 @@ export default function MidjourneyGuide() {
   
   return (
     <div>
-      <Header />
       
       <div className="container">
         <div className="hero">
