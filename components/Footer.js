@@ -1,9 +1,13 @@
 import Link from 'next/link';
 
-export default function Footer() {
+export default function Footer({ isHomePage }) {
+  // Apply different classes based on whether this is the home page
+  const footerClass = isHomePage ? "footer home-footer" : "footer";
+  const containerClass = isHomePage ? "container home-footer-container" : "container";
+  
   return (
-    <footer className="footer">
-      <div className="container">
+    <footer className={footerClass}>
+      <div className={containerClass}>
         <div className="footer-container">
           <div className="footer-section">
             <h3>How-ToGuides.com</h3>
