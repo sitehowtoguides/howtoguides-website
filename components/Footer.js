@@ -10,7 +10,14 @@ export default function Footer({ isHomePage }) {
       <div className={containerClass}>
         <div className="footer-container">
           <div className="footer-section">
-            <h3>How-ToGuides.com</h3>
+            {/* Logo implementation using standard HTML img tag */}
+            <img 
+              src="/images/logo/logo-footer.svg" 
+              alt="How-ToGuides.com" 
+              width="120" 
+              height="40" 
+              style={{ maxWidth: '100%', height: 'auto', marginBottom: '10px' }}
+            />
             <p>Master AI tools with step-by-step guides and tutorials.</p>
           </div>
           <div className="footer-section">
