@@ -67,6 +67,18 @@ export default function Home() {
                 </Link>
               </div>
             </div>
+    
+            <div className="guide-card">
+              <div className="guide-card-content">
+                <h3 className="guide-card-title">How to Use AI for Content Creation</h3>
+                  <p className="guide-card-description">
+              Master AI-powered content creation to produce high-quality blogs, social media, videos, and more
+              </p>
+              <Link href="/guides/ai-content-creation" className="btn">
+              Read Guide
+            </Link>
+          </div>
+        </div>
 
           <div className="guide-card">
             <div className="guide-card-content">
