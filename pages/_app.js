@@ -3,8 +3,13 @@ import '../styles/mobile.css';
 import Head from 'next/head';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { useRouter } from 'next/router';
 
 function MyApp({ Component, pageProps }) {
+  const router = useRouter();
+  // Check if we're on the home page
+  const isHomePage = router.pathname === '/';
+  
   return (
     <>
       <Head>
@@ -13,9 +18,14 @@ function MyApp({ Component, pageProps }) {
         <title>How-ToGuides.com - Master AI Tools with Step-by-Step Guides</title>
         <meta name="description" content="Comprehensive tutorials for AI tools including ChatGPT, Midjourney, DALL-E, and more. Learn how to use AI effectively with our step-by-step guides." />
       </Head>
-      <Header />
+      
+      {/* Only show Header if not on home page */}
+      {!isHomePage && <Header />}
+      
       <Component {...pageProps} />
-      <Footer />
+      
+      {/* Only show Footer if not on home page */}
+      {!isHomePage && <Footer />}
     </>
   );
 }
