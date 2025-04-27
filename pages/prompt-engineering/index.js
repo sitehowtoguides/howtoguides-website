@@ -15,7 +15,7 @@ export default function PromptEngineering() {
       count: 1,
       featured: true,
       guides: [
-        { title: 'How to Write Effective AI Prompts: The Ultimate Guide', link: '/guides/effective-ai-prompts' }
+        { title: 'How to Write Effective AI Prompts: Complete 2025 Guide', link: '/guides/how-to-write-effective-ai-prompts' }
       ]
     },
     {
@@ -27,9 +27,9 @@ export default function PromptEngineering() {
       count: 0,
       comingSoon: true,
       guides: [
-        { title: 'How to Use Chain-of-Thought Prompting', link: '/prompt-engineering/chain-of-thought' },
-        { title: 'How to Use Few-Shot Prompting', link: '/prompt-engineering/few-shot-prompting' },
-        { title: 'How to Use Prompt Templates', link: '/prompt-engineering/prompt-templates' }
+        { title: 'How to Use Chain-of-Thought Prompting', link: '/prompt-engineering/how-to-use-chain-of-thought-prompting' },
+        { title: 'How to Use Few-Shot Prompting', link: '/prompt-engineering/how-to-use-few-shot-prompting' },
+        { title: 'How to Use Prompt Templates', link: '/prompt-engineering/how-to-use-prompt-templates' }
       ]
     },
     {
@@ -41,8 +41,8 @@ export default function PromptEngineering() {
       count: 0,
       comingSoon: true,
       guides: [
-        { title: 'How to Use Prompt Engineering for SEO', link: '/prompt-engineering/seo-prompting' },
-        { title: 'How to Use Prompt Engineering for Business', link: '/prompt-engineering/business-prompting' }
+        { title: 'How to Use Prompt Engineering for SEO', link: '/prompt-engineering/how-to-use-prompt-engineering-for-seo' },
+        { title: 'How to Use Prompt Engineering for Business', link: '/prompt-engineering/how-to-use-prompt-engineering-for-business' }
       ]
     },
     {
@@ -54,8 +54,8 @@ export default function PromptEngineering() {
       count: 0,
       comingSoon: true,
       guides: [
-        { title: 'How to Create AI Art Prompts', link: '/prompt-engineering/art-prompts' },
-        { title: 'How to Write Prompts for Image Generation', link: '/prompt-engineering/image-prompts' }
+        { title: 'How to Create AI Art Prompts', link: '/prompt-engineering/how-to-create-ai-art-prompts' },
+        { title: 'How to Write Prompts for Image Generation', link: '/prompt-engineering/how-to-write-prompts-for-image-generation' }
       ]
     },
     {
@@ -67,7 +67,7 @@ export default function PromptEngineering() {
       count: 0,
       comingSoon: true,
       guides: [
-        { title: 'How to Optimize Prompts for AI Tools', link: '/prompt-engineering/prompt-optimization' }
+        { title: 'How to Optimize Prompts for AI Tools', link: '/prompt-engineering/how-to-optimize-prompts-for-ai-tools' }
       ]
     }
   ];
