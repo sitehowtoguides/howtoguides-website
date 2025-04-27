@@ -12,10 +12,11 @@ export default function AIGuides() {
       description: 'Learn how to use OpenAI\'s powerful language model for various tasks',
       image: '/images/logos/chatgpt-logo.png',
       color: '#74aa9c',
-      count: 1,
+      count: 2,
       featured: true,
       guides: [
-        { title: 'How to Use ChatGPT: Beginner\'s Guide', link: '/guides/chatgpt-for-beginners' }
+        { title: 'How to Use ChatGPT: Beginner\'s Guide', link: '/guides/chatgpt-for-beginners' },
+        { title: 'How to Make ChatGPT Write Longer Responses', link: '/guides/chatgpt-longer-responses' }
       ]
     },
     {
