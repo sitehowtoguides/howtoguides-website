@@ -16,7 +16,7 @@ export default function AIGuides() {
       featured: true,
       guides: [
         { title: 'How to Use ChatGPT: Complete 2025 Guide', link: '/guides/how-to-use-chatgpt' },
-        { title: 'How to Make ChatGPT Write Longer Responses: Complete 2025 Guide', link: '/guides/chatgpt-longer-responses' }
+        { title: 'How to Make ChatGPT Write Longer Responses: Complete 2025 Guide', link: '/guides/how-to-make-chatgpt-write-longer-responses' }
       ]
     },
     {
@@ -28,7 +28,7 @@ export default function AIGuides() {
       count: 1,
       featured: true,
       guides: [
-        { title: 'How to Use Gemini AI: Complete 2025 Guide', link: '/guides/gemini-ai-tutorial' }
+        { title: 'How to Use Gemini AI: Complete 2025 Guide', link: '/guides/how-to-use-gemini-ai' }
       ]
     },
     {
@@ -39,7 +39,7 @@ export default function AIGuides() {
       color: '#3498db',
       count: 1,
       guides: [
-        { title: 'How to Use Midjourney: Step-by-Step Guide', link: '/guides/midjourney-tutorial' }
+        { title: 'How to Use Midjourney: Step-by-Step Guide', link: '/guides/how-to-use-midjourney' }
       ]
     },
     {
@@ -50,7 +50,7 @@ export default function AIGuides() {
       color: '#e74c3c',
       count: 1,
       guides: [
-        { title: 'How to Use DALL-E: Complete 2025 Tutorial', link: '/guides/dalle-tutorial' }
+        { title: 'How to Use DALL-E: Complete 2025 Tutorial', link: '/guides/how-to-use-dall-e' }
       ]
     },
     {
@@ -61,8 +61,8 @@ export default function AIGuides() {
       color: '#2ecc71',
       count: 2,
       guides: [
-        { title: 'How to Use AI for Content Creation: Complete 2025 Guide', link: '/guides/ai-content-creation' },
-        { title: 'How to Write Effective AI Prompts: Complete 2025 Guide', link: '/guides/effective-ai-prompts' }
+        { title: 'How to Use AI for Content Creation: Complete 2025 Guide', link: '/guides/how-to-use-ai-for-content-creation' },
+        { title: 'How to Write Effective AI Prompts: Complete 2025 Guide', link: '/guides/how-to-write-effective-ai-prompts' }
       ]
     },
     {
@@ -73,8 +73,8 @@ export default function AIGuides() {
       color: '#f39c12',
       count: 2,
       guides: [
-        { title: 'How to Use Midjourney: Step-by-Step Guide', link: '/guides/midjourney-tutorial' },
-        { title: 'How to Use DALL-E: Complete 2025 Tutorial', link: '/guides/dalle-tutorial' }
+        { title: 'How to Use Midjourney: Step-by-Step Guide', link: '/guides/how-to-use-midjourney' },
+        { title: 'How to Use DALL-E: Complete 2025 Tutorial', link: '/guides/how-to-use-dall-e' }
       ]
     },
     {
