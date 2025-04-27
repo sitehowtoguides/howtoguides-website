@@ -20,11 +20,11 @@ export default function Home() {
         <div className="guide-grid">
           <div className="guide-card">
             <div className="guide-card-content">
-              <h3 className="guide-card-title">How to Use ChatGPT for Beginners</h3>
+              <h3 className="guide-card-title">How to Use ChatGPT: Complete 2025 Guide</h3>
               <p className="guide-card-description">
                 Master ChatGPT from scratch with our step-by-step tutorial
               </p>
-              <Link href="/guides/chatgpt-for-beginners" className="btn">
+              <Link href="/guides/how-to-use-chatgpt" className="btn">
                 Read Guide
               </Link>
             </div>
@@ -32,7 +32,7 @@ export default function Home() {
     
           <div className="guide-card">
             <div className="guide-card-content">
-              <h3 className="guide-card-title">How to Use DALL-E: Complete Tutorial</h3>
+              <h3 className="guide-card-title">How to Use DALL-E: Complete 2025 Tutorial</h3>
                 <p className="guide-card-description">
                   Learn how to create amazing AI-generated images with OpenAI's DALL-E
                 </p>
@@ -44,7 +44,7 @@ export default function Home() {
 
           <div className="guide-card">
             <div className="guide-card-content">
-              <h3 className="guide-card-title">How to Use Midjourney: Step-by-Step</h3>
+              <h3 className="guide-card-title">How to Use Midjourney: Step-by-Step Guide</h3>
               <p className="guide-card-description">
                 Learn how to create stunning AI-generated images with Midjourney
               </p>
@@ -56,7 +56,7 @@ export default function Home() {
     
           <div className="guide-card">
            <div className="guide-card-content">
-              <h3 className="guide-card-title">How to Use Gemini AI: Beginner's Tutorial</h3>
+              <h3 className="guide-card-title">How to Use Gemini AI: Complete 2025 Guide</h3>
               <p className="guide-card-description">
                 Master Google's powerful multimodal AI assistant with our comprehensive guide
                </p>
@@ -68,7 +68,7 @@ export default function Home() {
     
             <div className="guide-card">
               <div className="guide-card-content">
-                <h3 className="guide-card-title">How to Use AI for Content Creation</h3>
+                <h3 className="guide-card-title">How to Use AI for Content Creation: Complete 2025 Guide</h3>
                   <p className="guide-card-description">
               Master AI-powered content creation to produce high-quality blogs, social media, videos, and more
               </p>
@@ -80,7 +80,7 @@ export default function Home() {
 
           <div className="guide-card">
             <div className="guide-card-content">
-              <h3 className="guide-card-title">How to Write Effective AI Prompts</h3>
+              <h3 className="guide-card-title">How to Write Effective AI Prompts: Complete 2025 Guide</h3>
               <p className="guide-card-description">
                 Techniques for crafting prompts that get better results from AI tools
               </p>
