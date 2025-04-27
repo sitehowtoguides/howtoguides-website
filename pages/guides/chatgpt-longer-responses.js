@@ -1,6 +1,4 @@
 import { useState } from 'react';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
 import ModuleNavigation from '../../components/ModuleNavigation';
 import ExpandableSection from '../../components/ExpandableSection';
 import KnowledgeCheck from '../../components/KnowledgeCheck';
@@ -46,7 +44,6 @@ export default function ChatGPTLongerResponsesGuide() {
   
   return (
     <div>
-      <Header />
       
       <div className="container">
         <div className="hero">
@@ -372,7 +369,6 @@ Write a 1000-word essay on climate change solutions. Include sections on renewab
         benefits={kitBenefits}
       />
       
-      <Footer />
       
       <style jsx>{`
         .step-by-step-container {
