@@ -36,7 +36,7 @@ export default function Home() {
                 <p className="guide-card-description">
                   Learn how to create amazing AI-generated images with OpenAI's DALL-E
                 </p>
-                <Link href="/guides/dalle-tutorial" className="btn">
+                <Link href="/guides/how-to-use-dall-e" className="btn">
                 Read Guide
               </Link>
             </div>
@@ -48,7 +48,7 @@ export default function Home() {
               <p className="guide-card-description">
                 Learn how to create stunning AI-generated images with Midjourney
               </p>
-              <Link href="/guides/midjourney-tutorial" className="btn">
+              <Link href="/guides/how-to-use-midjourney" className="btn">
                 Read Guide
               </Link>
             </div>
@@ -60,7 +60,7 @@ export default function Home() {
               <p className="guide-card-description">
                 Master Google's powerful multimodal AI assistant with our comprehensive guide
                </p>
-               <Link href="/guides/gemini-ai-tutorial" className="btn">
+               <Link href="/guides/how-to-use-gemini-ai" className="btn">
                  Read Guide
                 </Link>
               </div>
@@ -72,7 +72,7 @@ export default function Home() {
                   <p className="guide-card-description">
               Master AI-powered content creation to produce high-quality blogs, social media, videos, and more
               </p>
-              <Link href="/guides/ai-content-creation" className="btn">
+              <Link href="/guides/how-to-use-ai-for-content-creation" className="btn">
               Read Guide
             </Link>
           </div>
@@ -84,7 +84,7 @@ export default function Home() {
               <p className="guide-card-description">
                 Techniques for crafting prompts that get better results from AI tools
               </p>
-              <Link href="/guides/effective-ai-prompts" className="btn">
+              <Link href="/guides/how-to-write-effective-ai-prompts" className="btn">
                 Read Guide
               </Link>
             </div>
