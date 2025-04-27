@@ -1,23 +1,20 @@
 import Link from 'next/link';
 import Head from 'next/head';
 import { useState } from 'react';
+import { GUIDES, getCategoryGuides } from '../../guideData';
+import { ROUTES } from '../../routes';
 
 export default function AIGuides() {
   const [searchTerm, setSearchTerm] = useState('');
   
-  const guides = [
+  const categories = [
     {
       id: 'chatgpt',
       title: 'ChatGPT',
       description: 'Learn how to use OpenAI\'s powerful language model for various tasks',
       image: '/images/logos/chatgpt-logo.png',
       color: '#74aa9c',
-      count: 2,
       featured: true,
-      guides: [
-        { title: 'How to Use ChatGPT: Complete 2025 Guide', link: '/guides/how-to-use-chatgpt' },
-        { title: 'How to Make ChatGPT Write Longer Responses: Complete 2025 Guide', link: '/guides/how-to-make-chatgpt-write-longer-responses' }
-      ]
     },
     {
       id: 'gemini',
@@ -25,11 +22,7 @@ export default function AIGuides() {
       description: 'Master Google\'s multimodal AI assistant with comprehensive tutorials',
       image: '/images/logos/gemini-logo.png',
       color: '#8e44ad',
-      count: 1,
       featured: true,
-      guides: [
-        { title: 'How to Use Gemini AI: Complete 2025 Guide', link: '/guides/how-to-use-gemini-ai' }
-      ]
     },
     {
       id: 'midjourney',
@@ -37,10 +30,7 @@ export default function AIGuides() {
       description: 'Create stunning AI-generated artwork with detailed Midjourney guides',
       image: '/images/logos/midjourney-logo.png',
       color: '#3498db',
-      count: 1,
-      guides: [
-        { title: 'How to Use Midjourney: Step-by-Step Guide', link: '/guides/how-to-use-midjourney' }
-      ]
+      featured: false,
     },
     {
       id: 'dalle',
@@ -48,10 +38,7 @@ export default function AIGuides() {
       description: 'Generate amazing images with OpenAI\'s DALL-E image generation model',
       image: '/images/logos/dalle-logo.png',
       color: '#e74c3c',
-      count: 1,
-      guides: [
-        { title: 'How to Use DALL-E: Complete 2025 Tutorial', link: '/guides/how-to-use-dall-e' }
-      ]
+      featured: false,
     },
     {
       id: 'content-creation',
@@ -59,11 +46,7 @@ export default function AIGuides() {
       description: 'Learn how to leverage AI tools for creating high-quality content',
       image: '/images/logos/content-creation-logo.png',
       color: '#2ecc71',
-      count: 2,
-      guides: [
-        { title: 'How to Use AI for Content Creation: Complete 2025 Guide', link: '/guides/how-to-use-ai-for-content-creation' },
-        { title: 'How to Write Effective AI Prompts: Complete 2025 Guide', link: '/guides/how-to-write-effective-ai-prompts' }
-      ]
+      featured: false,
     },
     {
       id: 'image-generation',
@@ -71,11 +54,7 @@ export default function AIGuides() {
       description: 'Master the art of creating stunning visuals with AI image generators',
       image: '/images/logos/image-generation-logo.png',
       color: '#f39c12',
-      count: 2,
-      guides: [
-        { title: 'How to Use Midjourney: Step-by-Step Guide', link: '/guides/how-to-use-midjourney' },
-        { title: 'How to Use DALL-E: Complete 2025 Tutorial', link: '/guides/how-to-use-dall-e' }
-      ]
+      featured: false,
     },
     {
       id: 'coding-assistant',
@@ -83,15 +62,23 @@ export default function AIGuides() {
       description: 'Enhance your programming workflow with AI coding assistants',
       image: '/images/logos/coding-assistant-logo.png',
       color: '#34495e',
-      count: 0,
       comingSoon: true,
-      guides: []
     }
   ];
 
-  const filteredGuides = guides.filter(guide => 
-    guide.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    guide.description.toLowerCase().includes(searchTerm.toLowerCase())
+  // Add guide count to each category
+  const categoriesWithGuides = categories.map(category => {
+    const guides = getCategoryGuides(category.id);
+    return {
+      ...category,
+      count: guides.length,
+      guides: guides
+    };
+  });
+
+  const filteredCategories = categoriesWithGuides.filter(category => 
+    category.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    category.description.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -123,7 +110,7 @@ export default function AIGuides() {
 
         <section className="category-section">
           <div className="category-grid">
-            {filteredGuides.map((category) => (
+            {filteredCategories.map((category) => (
               <div 
                 key={category.id} 
                 className={`category-card ${category.featured ? 'featured' : ''} ${category.comingSoon ? 'coming-soon' : ''}`}
@@ -146,7 +133,7 @@ export default function AIGuides() {
                       <ul className="guide-list">
                         {category.guides.map((guide, index) => (
                           <li key={index}>
-                            <Link href={guide.link}>
+                            <Link href={guide.url}>
                               {guide.title}
                             </Link>
                           </li>
@@ -158,7 +145,7 @@ export default function AIGuides() {
                 
                 {!category.comingSoon && category.guides.length > 0 && (
                   <div className="category-card-footer">
-                    <Link href={category.guides[0].link} className="btn">
+                    <Link href={category.guides[0].url} className="btn">
                       View {category.guides.length === 1 ? 'Guide' : 'Guides'}
                     </Link>
                   </div>
