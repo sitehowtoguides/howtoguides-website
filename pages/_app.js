@@ -18,6 +18,16 @@ function MyApp({ Component, pageProps }) {
         <meta charSet="utf-8" />
         <title>How-ToGuides.com - Master AI Tools with Step-by-Step Guides</title>
         <meta name="description" content="Comprehensive tutorials for AI tools including ChatGPT, Midjourney, DALL-E, and more. Learn how to use AI effectively with our step-by-step guides." />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/logo/favicon/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/logo/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/logo/favicon/favicon-16x16.png" />
+    <link rel="manifest" href="/images/logo/favicon/site.webmanifest" />
+    <link rel="mask-icon" href="/images/logo/favicon/safari-pinned-tab.svg" color="#5bbad5" />
+    <link rel="shortcut icon" href="/images/logo/favicon/favicon.ico" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="msapplication-config" content="/images/logo/favicon/browserconfig.xml" />
+    <meta name="theme-color" content="#ffffff" />
+    
       </Head>
       
       {/* Always show Header, but with conditional class for home page */}
