@@ -282,5 +282,125 @@ export default function GeminiAIGuide() {
                     <li><strong>Gemini Pro model</strong>: Google's versatile AI model suitable for a wide range of everyday tasks</li>
                     <li><strong>Basic multimodal capabilities</strong>: Ability to understand and generate text, analyze images, and process various types of information</li>
                     <li><strong>Web search integration</strong>: Access to current information from the internet</li>
-                    <li><strong>Basic extensions</strong>: Integration with some Google services and tools
-(Content truncated due to size limit. Use line ranges to read in chunks)
+                    <li><strong>Basic extensions</strong>: Integration with some Google services and tools</li>
+                    <li><strong>Standard response length</strong>: Responses limited to standard length</li>
+                    <li><strong>Standard usage limits</strong>: Daily caps on the number of interactions</li>
+                  </ul>
+                </ExpandableSection>
+                
+                <ExpandableSection title="Gemini Advanced Features (Paid)">
+                  <p>Gemini Advanced is available through a Google One AI Premium subscription ($19.99/month as of 2025) and offers:</p>
+                  <ul>
+                    <li><strong>Gemini Ultra model</strong>: Google's most powerful AI model with enhanced reasoning and understanding</li>
+                    <li><strong>Advanced multimodal capabilities</strong>: More sophisticated processing of complex images, documents, and multimedia</li>
+                    <li><strong>Extended response length</strong>: Longer, more detailed responses for complex queries</li>
+                    <li><strong>Higher usage limits</strong>: More interactions per day</li>
+                    <li><strong>Priority access</strong>: Access to new features before they reach the free tier</li>
+                    <li><strong>Full extensions suite</strong>: Access to all available extensions and integrations</li>
+                    <li><strong>Additional Google One benefits</strong>: 2TB of cloud storage, premium support, and other Google One perks</li>
+                  </ul>
+                </ExpandableSection>
+                
+                <KnowledgeCheck 
+                  question="Which Gemini model powers the free version of Gemini AI?"
+                  options={[
+                    "Gemini Ultra",
+                    "Gemini Pro",
+                    "Gemini Nano",
+                    "Gemini Basic"
+                  ]}
+                  correctAnswer={1}
+                />
+                
+                <div className="module-navigation">
+                  <div className="nav-buttons">
+                    <button 
+                      className="btn secondary"
+                      onClick={() => setCurrentModule(currentModule - 1)}
+                    >
+                      Previous: Introduction
+                    </button>
+                    <button 
+                      className="btn"
+                      onClick={() => setCurrentModule(currentModule + 1)}
+                    >
+                      Next: Understanding Gemini AI's Capabilities
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+            
+            {currentModule > 1 && (
+              <div className="locked-content">
+                <h3>Unlock the Complete Guide</h3>
+                <p>
+                  The remaining sections of this guide are available when you sign up for our newsletter.
+                  Get instant access to all modules including:
+                </p>
+                
+                <ul>
+                  <li>Understanding Gemini AI's Capabilities</li>
+                  <li>Basic Interactions with Gemini AI</li>
+                  <li>Crafting Effective Prompts</li>
+                  <li>Practical Applications</li>
+                  <li>Troubleshooting Common Issues</li>
+                  <li>Frequently Asked Questions</li>
+                </ul>
+                
+                <LeadCaptureForm 
+                  title="Get Instant Access"
+                  description="Enter your email to unlock the complete guide:"
+                  benefits={[]}
+                  buttonText="UNLOCK GUIDE"
+                />
+              </div>
+            )}
+          </div>
+        </div>
+        
+        <div className="related-guides">
+          <h2>Related Guides</h2>
+          <div className="guide-cards">
+            <div className="card">
+              <img src="/images/chatgpt-guide-thumbnail.jpg" alt="ChatGPT Guide Thumbnail" />
+              <h3>How to Use ChatGPT</h3>
+              <p>Master ChatGPT with our complete tutorial</p>
+              <Link href="/guides/how-to-use-chatgpt">
+                <a className="btn">Read Guide</a>
+              </Link>
+            </div>
+            
+            <div className="card">
+              <img src="/images/ai-prompts-guide-thumbnail.jpg" alt="AI Prompts Guide Thumbnail" />
+              <h3>How to Write Effective AI Prompts</h3>
+              <p>Master the art of prompt engineering for better AI results</p>
+              <Link href="/guides/how-to-write-effective-ai-prompts">
+                <a className="btn">Read Guide</a>
+              </Link>
+            </div>
+            
+            <div className="card">
+              <img src="/images/dalle-guide-thumbnail.jpg" alt="DALL-E Guide Thumbnail" />
+              <h3>How to Use DALL-E</h3>
+              <p>Create stunning AI-generated images with DALL-E</p>
+              <Link href="/guides/how-to-use-dall-e">
+                <a className="btn">Read Guide</a>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {showPopup && (
+        <LeadCapturePopup 
+          title="Want to Master Gemini AI?"
+          description="Get our exclusive Gemini AI Resource Kit:"
+          benefits={kitBenefits}
+          buttonText="GET FREE KIT"
+          onClose={() => setShowPopup(false)}
+        />
+      )}
+    </div>
+  );
+}
