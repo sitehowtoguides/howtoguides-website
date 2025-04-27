@@ -4,6 +4,8 @@ import ExpandableSection from '../../components/ExpandableSection';
 import KnowledgeCheck from '../../components/KnowledgeCheck';
 import LeadCaptureForm from '../../components/LeadCaptureForm';
 import LeadCapturePopup from '../../components/LeadCapturePopup';
+import StructuredData from '../../components/StructuredData';
+import { chatGPTHowToSchema, chatGPTFAQSchema, chatGPTArticleSchema } from '../../data/schemas/chatgpt-guide';
 import Link from 'next/link';
 
 export default function ChatGPTGuide() {
@@ -44,7 +46,10 @@ export default function ChatGPTGuide() {
   
   return (
     <div>
-      
+    <StructuredData data={chatGPTHowToSchema} />
+    <StructuredData data={chatGPTFAQSchema} />
+    <StructuredData data={chatGPTArticleSchema} />
+
       <div className="container">
         <div className="hero">
           <h1>How to Use ChatGPT: Complete 2025 Guide</h1>
