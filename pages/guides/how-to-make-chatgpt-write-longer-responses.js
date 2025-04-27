@@ -279,5 +279,110 @@ export default function ChatGPTLongerResponsesGuide() {
                 </ul>
                 
                 <p>
-                  In the 
-(Content truncated due to size limit. Use line ranges to read in chunks)
+                  In the following sections, we'll explore specific techniques that address these insights, providing you with a comprehensive toolkit for consistently getting longer, more detailed responses from ChatGPT.
+                </p>
+                
+                <KnowledgeCheck 
+                  question="Which of the following is a key factor that influences ChatGPT's response length?"
+                  options={[
+                    "The time of day when you're using ChatGPT",
+                    "The user's typing speed",
+                    "Token limits and context windows",
+                    "The browser you're using"
+                  ]}
+                  correctAnswer={2}
+                />
+                
+                <div className="module-navigation">
+                  <div className="nav-buttons">
+                    <button 
+                      className="btn secondary"
+                      onClick={() => setCurrentModule(currentModule - 1)}
+                    >
+                      Previous: Introduction
+                    </button>
+                    <button 
+                      className="btn"
+                      onClick={() => setCurrentModule(currentModule + 1)}
+                    >
+                      Next: Using Explicit Length Instructions
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+            
+            {currentModule > 1 && (
+              <div className="locked-content">
+                <h3>Unlock the Complete Guide</h3>
+                <p>
+                  The remaining sections of this guide are available when you sign up for our newsletter.
+                  Get instant access to all modules including:
+                </p>
+                
+                <ul>
+                  <li>Using Explicit Length Instructions</li>
+                  <li>The Continue Technique</li>
+                  <li>Breaking Down Complex Requests</li>
+                  <li>Using Structural Frameworks</li>
+                  <li>Role-Based Prompting</li>
+                  <li>Optimizing for Different Versions</li>
+                  <li>Frequently Asked Questions</li>
+                </ul>
+                
+                <LeadCaptureForm 
+                  title="Get Instant Access"
+                  description="Enter your email to unlock the complete guide:"
+                  benefits={[]}
+                  buttonText="UNLOCK GUIDE"
+                />
+              </div>
+            )}
+          </div>
+        </div>
+        
+        <div className="related-guides">
+          <h2>Related Guides</h2>
+          <div className="guide-cards">
+            <div className="card">
+              <img src="/images/chatgpt-guide-thumbnail.jpg" alt="ChatGPT Guide Thumbnail" />
+              <h3>How to Use ChatGPT</h3>
+              <p>Master ChatGPT with our complete tutorial</p>
+              <Link href="/guides/how-to-use-chatgpt">
+                <a className="btn">Read Guide</a>
+              </Link>
+            </div>
+            
+            <div className="card">
+              <img src="/images/ai-prompts-guide-thumbnail.jpg" alt="AI Prompts Guide Thumbnail" />
+              <h3>How to Write Effective AI Prompts</h3>
+              <p>Master the art of prompt engineering for better AI results</p>
+              <Link href="/guides/how-to-write-effective-ai-prompts">
+                <a className="btn">Read Guide</a>
+              </Link>
+            </div>
+            
+            <div className="card">
+              <img src="/images/gemini-guide-thumbnail.jpg" alt="Gemini AI Guide Thumbnail" />
+              <h3>How to Use Gemini AI</h3>
+              <p>Learn to use Google's powerful AI assistant</p>
+              <Link href="/guides/how-to-use-gemini-ai">
+                <a className="btn">Read Guide</a>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {showPopup && (
+        <LeadCapturePopup 
+          title="Want More Detailed AI Responses?"
+          description="Get our exclusive ChatGPT Mastery Kit:"
+          benefits={kitBenefits}
+          buttonText="GET FREE KIT"
+          onClose={() => setShowPopup(false)}
+        />
+      )}
+    </div>
+  );
+}
