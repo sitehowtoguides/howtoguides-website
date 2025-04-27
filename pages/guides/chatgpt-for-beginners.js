@@ -5,6 +5,8 @@ import KnowledgeCheck from '../../components/KnowledgeCheck';
 import LeadCaptureForm from '../../components/LeadCaptureForm';
 import LeadCapturePopup from '../../components/LeadCapturePopup';
 import Link from 'next/link';
+import StructuredData from '../../components/StructuredData'; // Import the StructuredData component
+import { chatGPTHowToSchema, chatGPTFAQSchema, chatGPTArticleSchema } from '../../data/schemas/chatgpt-guide'; // Import the schema data
 
 export default function ChatGPTGuide() {
   const [showPopup, setShowPopup] = useState(false);
@@ -44,6 +46,10 @@ export default function ChatGPTGuide() {
   
   return (
     <div>
+      {/* Add the structured data components */}
+      <StructuredData data={chatGPTHowToSchema} />
+      <StructuredData data={chatGPTFAQSchema} />
+      <StructuredData data={chatGPTArticleSchema} />
       
       <div className="container">
         <div className="hero">
