@@ -34,7 +34,7 @@ export default function Footer({ isHomePage }) {
                 </Link>
               </li>
               <li>
-                <Link href="/guides/effective-ai-prompts">
+                <Link href="/guides/how-to-write-effective-ai-prompts">
                   How to Write Effective AI Prompts
                 </Link>
               </li>
