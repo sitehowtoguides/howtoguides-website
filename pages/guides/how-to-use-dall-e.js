@@ -313,5 +313,68 @@ export default function DalleTutorial() {
                 
                 <ul>
                   <li>Navigating the DALL-E Interface</li>
- 
-(Content truncated due to size limit. Use line ranges to read in chunks)
+                  <li>Creating Your First Image</li>
+                  <li>Crafting Effective Prompts</li>
+                  <li>Capabilities & Limitations</li>
+                  <li>Advanced Features</li>
+                  <li>Subscription Plans</li>
+                  <li>Troubleshooting</li>
+                  <li>Frequently Asked Questions</li>
+                </ul>
+                
+                <LeadCaptureForm 
+                  title="Get Instant Access"
+                  description="Enter your email to unlock the complete guide:"
+                  benefits={[]}
+                  buttonText="UNLOCK GUIDE"
+                />
+              </div>
+            )}
+          </div>
+        </div>
+        
+        <div className="related-guides">
+          <h2>Related Guides</h2>
+          <div className="guide-cards">
+            <div className="card">
+              <img src="/images/midjourney-guide-thumbnail.jpg" alt="Midjourney Guide Thumbnail" />
+              <h3>How to Use Midjourney</h3>
+              <p>Create stunning AI art with our complete Midjourney tutorial</p>
+              <Link href="/guides/how-to-use-midjourney">
+                <a className="btn">Read Guide</a>
+              </Link>
+            </div>
+            
+            <div className="card">
+              <img src="/images/ai-prompts-guide-thumbnail.jpg" alt="AI Prompts Guide Thumbnail" />
+              <h3>How to Write Effective AI Prompts</h3>
+              <p>Master the art of prompt engineering for better AI results</p>
+              <Link href="/guides/how-to-write-effective-ai-prompts">
+                <a className="btn">Read Guide</a>
+              </Link>
+            </div>
+            
+            <div className="card">
+              <img src="/images/chatgpt-guide-thumbnail.jpg" alt="ChatGPT Guide Thumbnail" />
+              <h3>How to Use ChatGPT</h3>
+              <p>Master ChatGPT with our complete tutorial</p>
+              <Link href="/guides/how-to-use-chatgpt">
+                <a className="btn">Read Guide</a>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {showPopup && (
+        <LeadCapturePopup 
+          title="Want to Master AI Image Generation?"
+          description="Get our exclusive DALL-E Resource Kit:"
+          benefits={kitBenefits}
+          buttonText="GET FREE KIT"
+          onClose={() => setShowPopup(false)}
+        />
+      )}
+    </div>
+  );
+}
