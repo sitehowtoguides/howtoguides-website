@@ -296,5 +296,61 @@ export default function AIPromptsGuide() {
                   <li>Chain-of-Thought Techniques</li>
                   <li>Model-Specific Prompting</li>
                   <li>Prompt Iteration</li>
-                 
-(Content truncated due to size limit. Use line ranges to read in chunks)
+                </ul>
+                
+                <LeadCaptureForm 
+                  title="Get Instant Access"
+                  description="Enter your email to unlock the complete guide:"
+                  benefits={[]}
+                  buttonText="UNLOCK GUIDE"
+                />
+              </div>
+            )}
+          </div>
+        </div>
+        
+        <div className="related-guides">
+          <h2>Related Guides</h2>
+          <div className="guide-cards">
+            <div className="card">
+              <img src="/images/chatgpt-guide-thumbnail.jpg" alt="ChatGPT Guide Thumbnail" />
+              <h3>How to Use ChatGPT</h3>
+              <p>Master ChatGPT with our complete tutorial</p>
+              <Link href="/guides/how-to-use-chatgpt">
+                <a className="btn">Read Guide</a>
+              </Link>
+            </div>
+            
+            <div className="card">
+              <img src="/images/ai-content-creation-guide-thumbnail.jpg" alt="AI Content Creation Guide Thumbnail" />
+              <h3>How to Use AI for Content Creation</h3>
+              <p>Learn to create high-quality content with AI tools</p>
+              <Link href="/guides/how-to-use-ai-for-content-creation">
+                <a className="btn">Read Guide</a>
+              </Link>
+            </div>
+            
+            <div className="card">
+              <img src="/images/gemini-guide-thumbnail.jpg" alt="Gemini Guide Thumbnail" />
+              <h3>How to Use Gemini AI</h3>
+              <p>Master Google's powerful multimodal AI assistant</p>
+              <Link href="/guides/how-to-use-gemini-ai">
+                <a className="btn">Read Guide</a>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {showPopup && (
+        <LeadCapturePopup 
+          title="Want to Master Prompt Engineering?"
+          description="Get our exclusive Prompt Engineering Kit:"
+          benefits={kitBenefits}
+          buttonText="GET FREE KIT"
+          onClose={() => setShowPopup(false)}
+        />
+      )}
+    </div>
+  );
+}
