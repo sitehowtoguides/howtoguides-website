@@ -24,12 +24,12 @@ export default function Footer({ isHomePage }) {
             <h3>Popular Guides</h3>
             <ul className="footer-links">
               <li>
-                <Link href="/guides/chatgpt-for-beginners">
+                <Link href="/guides/how-to-use-chatgpt">
                   How to Use ChatGPT
                 </Link>
               </li>
               <li>
-                <Link href="/guides/midjourney-tutorial">
+                <Link href="/guides/how-to-use-midjourney">
                   How to Use Midjourney
                 </Link>
               </li>
@@ -39,7 +39,7 @@ export default function Footer({ isHomePage }) {
                 </Link>
               </li>
               <li>
-                <Link href="/guides/gemini-ai-tutorial">
+                <Link href="/guides/how-to-use-gemini-ai">
                   How to Use Gemini AI
                 </Link>
               </li>
