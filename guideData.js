@@ -1,6 +1,9 @@
 // guideData.js
 import { ROUTES } from './routes';
 
+// Get today's date in YYYY-MM-DD format
+const today = new Date().toISOString().split('T')[0];
+
 export const GUIDES = [
   {
     id: 'chatgpt',
@@ -12,6 +15,8 @@ export const GUIDES = [
     featured: true,
     image: '/images/logos/chatgpt-logo.png',
     color: '#74aa9c',
+    lastUpdated: '2025-04-19', // Keep specific date if known
+    updateNotes: 'Updated with GPT-4o information',
   },
   {
     id: 'chatgptLongerResponses',
@@ -23,6 +28,8 @@ export const GUIDES = [
     featured: false,
     image: '/images/logos/chatgpt-logo.png',
     color: '#74aa9c',
+    lastUpdated: today,
+    updateNotes: 'Initial version published',
   },
   {
     id: 'dalle',
@@ -34,6 +41,8 @@ export const GUIDES = [
     featured: true,
     image: '/images/logos/dalle-logo.png',
     color: '#e74c3c',
+    lastUpdated: today,
+    updateNotes: 'Initial version published',
   },
   {
     id: 'midjourney',
@@ -45,6 +54,8 @@ export const GUIDES = [
     featured: true,
     image: '/images/logos/midjourney-logo.png',
     color: '#3498db',
+    lastUpdated: '2025-03-28', // Keep specific date if known
+    updateNotes: 'Updated with v6 features',
   },
   {
     id: 'gemini',
@@ -56,6 +67,8 @@ export const GUIDES = [
     featured: true,
     image: '/images/logos/gemini-logo.png',
     color: '#8e44ad',
+    lastUpdated: '2025-04-10', // Keep specific date if known
+    updateNotes: 'New Gemini AI Tutorial now available',
   },
   {
     id: 'aiContentCreation',
@@ -67,6 +80,8 @@ export const GUIDES = [
     featured: false,
     image: '/images/logos/content-creation-logo.png',
     color: '#2ecc71',
+    lastUpdated: today,
+    updateNotes: 'Initial version published',
   },
   {
     id: 'aiPrompts',
@@ -76,8 +91,10 @@ export const GUIDES = [
     schemaFile: 'ai-prompts-guide',
     category: ['prompt-engineering', 'productivity'],
     featured: false,
-    image: '/images/logos/content-creation-logo.png',
+    image: '/images/logos/content-creation-logo.png', // Consider a dedicated prompt engineering logo
     color: '#2ecc71',
+    lastUpdated: today,
+    updateNotes: 'Initial version published',
   },
 ];
 
@@ -107,3 +124,12 @@ export const getCategoryGuides = (categoryId) => {
       return [];
   }
 };
+
+// Helper function to get the latest updates (sorted by lastUpdated date)
+export const getLatestUpdates = (count = 3) => {
+  return GUIDES
+    .filter(guide => guide.lastUpdated) // Ensure guide has an update date
+    .sort((a, b) => new Date(b.lastUpdated) - new Date(a.lastUpdated))
+    .slice(0, count);
+};
+
