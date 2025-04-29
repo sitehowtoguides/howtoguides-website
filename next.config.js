@@ -6,7 +6,7 @@ const nextConfig = {
     domains: ['localhost'],
   },
   // Enable static exports for deployment
-  output: 'export',
+ // output: 'export',
 }
 
 module.exports = nextConfig
