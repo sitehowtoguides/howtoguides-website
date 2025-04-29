@@ -71,7 +71,7 @@ export default function UpdateReviewPage() {
         body: JSON.stringify({
           id: id,
           action: action,
-          finalText: action === 'approve' ? editedText : undefined,
+          finalUpdateText: action === 'approve' ? editedText : undefined,
         }),
       });
       const data = await res.json();
