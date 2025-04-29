@@ -88,7 +88,7 @@ export default async function handler(req, res) {
         // 4. Generate the updated JS code from the modified AST.
         // For now, we use a less robust string manipulation approach.
         
-        const guideIdRegex = new RegExp(`id:\s*['\"\"]${updateToProcess.guideId}['\"\"]`, 's');
+        const guideIdRegex = new RegExp(`id:\s*["\"\"]${updateToProcess.guideId}["\"\"]`, "s");
         const guideMatch = currentContent.match(guideIdRegex);
 
         if (!guideMatch) {
@@ -97,8 +97,8 @@ export default async function handler(req, res) {
 
         // Find the updateNotes line for the specific guide
         const guideStartIndex = guideMatch.index;
-        const updateNotesRegex = /updateNotes:
-*['\"\`]/s;
+        // CORRECTED: Regex on a single line
+        const updateNotesRegex = /updateNotes:\s*["\"\`]/s; 
         const updateNotesMatch = currentContent.substring(guideStartIndex).match(updateNotesRegex);
 
         if (!updateNotesMatch) {
@@ -106,10 +106,10 @@ export default async function handler(req, res) {
         }
 
         const updateNotesStartIndex = guideStartIndex + updateNotesMatch.index + updateNotesMatch[0].length;
-        const closingQuoteChar = updateNotesMatch[0].slice(-1); // Get the quote type (', ", `)
+        const closingQuoteChar = updateNotesMatch[0].slice(-1); // Get the quote type (", ", `)
         
         // Construct the new note with date
-        const today = new Date().toLocaleDateString('en-CA'); // YYYY-MM-DD format
+        const today = new Date().toLocaleDateString("en-CA"); // YYYY-MM-DD format
         const newNote = `${finalUpdateText} (${today})`;
         
         // Prepend the new note (add \n for newline)
@@ -133,7 +133,7 @@ export default async function handler(req, res) {
 
       } catch (githubError) {
         console.error(`Error updating ${GUIDE_DATA_PATH_IN_REPO} via GitHub:`, githubError);
-        // Return a server error but don't reveal too much detail
+        // Return a server error but don"t reveal too much detail
         return res.status(500).json({ message: "Error updating guide data on server." });
       }
       // --- End GitHub Interaction --- 
@@ -159,7 +159,7 @@ export default async function handler(req, res) {
     await fs.writeFile(PENDING_UPDATES_PATH, JSON.stringify(updatedPendingList, null, 2));
     console.log(`Updated status for ${id} to ${updateToProcess.status} in pending-updates.json.`);
 
-    res.status(200).json({ message: `Update successfully ${action === 'approve' ? 'approved' : 'rejected'}.` });
+    res.status(200).json({ message: `Update successfully ${action === "approve" ? "approved" : "rejected"}.` });
 
   } catch (error) {
     console.error("Error in /api/apply-update:", error);
