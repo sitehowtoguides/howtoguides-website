@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 // Basic password protection (replace with a proper auth solution like NextAuth.js)
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'password'; // Use environment variable
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'test123'; // Use environment variable
 
 export default function AdminUpdatesDashboard() {
   const [updates, setUpdates] = useState([]);
