@@ -69,7 +69,7 @@ export default function UpdateReviewPage() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          updateId: id,
+          id: id,
           action: action,
           finalText: action === 'approve' ? editedText : undefined,
         }),
