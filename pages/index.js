@@ -1,14 +1,22 @@
 import Link from 'next/link';
-import { getFeaturedGuides } from '../guideData';
+import { getFeaturedGuides, getLatestUpdates } from '../guideData'; // Import getLatestUpdates
 
 export default function Home() {
   // Get featured guides for the homepage
   const featuredGuides = getFeaturedGuides();
   
+  // Get the latest updates (default is 3)
+  const latestUpdates = getLatestUpdates();
+  
+  // Helper function to format date (optional, can be done inline)
+  const formatDate = (dateString) => {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  };
+  
   return (
     <div>
-      {/* Remove Header and Footer components since they're now handled by _app.js */}
-      
+      {/* Hero section */}
       <section className="hero">
         <div className="container">
           <h1>Master AI Tools with Step-by-Step Guides</h1>
@@ -19,6 +27,7 @@ export default function Home() {
         </div>
       </section>
       
+      {/* Popular guides section */}
       <section className="container">
         <h2>Popular Guides</h2>
         <div className="guide-grid">
@@ -51,15 +60,22 @@ export default function Home() {
         </div>
       </section>
       
+      {/* Latest Updates Section - Now Dynamic */}
       <section className="container">
         <h2>Latest Updates</h2>
         <ul>
-          <li>ChatGPT Guide updated with GPT-4o information (April 19, 2025)</li>
-          <li>New Gemini AI Tutorial now available (April 10, 2025)</li>
-          <li>Midjourney Guide updated with v6 features (March 28, 2025)</li>
+          {latestUpdates.map((update, index) => (
+            <li key={index}>
+              <Link href={update.url}>
+                {/* Display update notes if available, otherwise use a generic message */}
+                {update.updateNotes ? `${update.updateNotes} (${formatDate(update.lastUpdated)})` : `${update.title} updated on ${formatDate(update.lastUpdated)}`}
+              </Link>
+            </li>
+          ))}
         </ul>
       </section>
       
+      {/* Newsletter Section */}
       <section className="container">
         <div className="lead-form">
           <h2>Get Our AI Newsletter</h2>
@@ -77,8 +93,7 @@ export default function Home() {
           </form>
         </div>
       </section>
-      
-      {/* Remove Footer component since it's now handled by _app.js */}
     </div>
   );
 }
+
