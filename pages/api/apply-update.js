@@ -2,7 +2,7 @@ import fs from 'fs/promises';
 import path from 'path';
 
 // Path to the data file for storing pending updates
-const PENDING_UPDATES_PATH = path.resolve(process.cwd(), 'data/pending-updates.json');
+const PENDING_UPDATES_PATH = path.join('/tmp', 'pending-updates.json'); // Use /tmp directory
 // Path to the guide data file
 const GUIDE_DATA_PATH = path.resolve(process.cwd(), 'guideData.js'); // Assuming guideData.js is in the root
 
