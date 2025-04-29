@@ -47,7 +47,7 @@ export default async function handler(req, res) {
         const existingContent = await getGuideContentSnippet(item.guideId);
         
         // Generate draft update using OpenAI
-        const aiResult = await generateUpdateDraft(item, existingContent);
+        // const aiResult = await generateUpdateDraft(item, existingContent);
         
         // Prepare the data to be saved
         const pendingUpdate = {
@@ -60,8 +60,8 @@ export default async function handler(req, res) {
             summary: item.summary,
             sourceFeed: item.sourceFeed,
           },
-          aiDraft: aiResult.success ? aiResult.draft : `AI Error: ${aiResult.error}`,
-          aiAnalysisSuccess: aiResult.success,
+          aiDraft: "AI Analysis Temporarily Disabled", // Placeholder
+          aiAnalysisSuccess: false, // Placeholder
           status: 'Pending Review',
           creationDate: new Date().toISOString(),
           reviewDate: null,
