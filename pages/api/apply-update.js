@@ -70,7 +70,8 @@ async function updateGuideDataOnGitHub(guideId, finalUpdateText) {
     for (let i = 0; i < lines.length; i++) {
         // Trim the line and check for the ID pattern using different quotes
         const trimmedLine = lines[i].trim();
-        if (trimmedLine.startsWith(`id: '${guideId}'`) || trimmedLine.startsWith(`id: "${guideId}"`) || trimmedLine.startsWith(`id: \"${guideId}\"") || trimmedLine.startsWith(`id: \"${guideId}\"") ) {
+        // Corrected line: Check for single quotes, double quotes, or backticks
+        if (trimmedLine.startsWith(`id: '${guideId}'`) || trimmedLine.startsWith(`id: "${guideId}"`) || trimmedLine.startsWith(`id: \"${guideId}\"") ) {
             guideStartIndex = i;
             break;
         }
