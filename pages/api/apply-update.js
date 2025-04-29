@@ -21,7 +21,6 @@ async function readPendingUpdates() {
     const data = await fs.readFile(PENDING_UPDATES_PATH, 'utf-8');
     return JSON.parse(data);
   } catch (error) {
-    // If file doesn't exist or is empty, return empty array
     if (error.code === 'ENOENT') {
       return [];
     }
@@ -62,49 +61,73 @@ async function updateGuideDataOnGitHub(guideId, finalUpdateText) {
     const fileContent = Buffer.from(getFileResponse.data.content, 'base64').toString('utf-8');
     const sha = getFileResponse.data.sha;
 
-    // 2. Find the correct guide object and insert the new note
-    const idLineRegex = new RegExp(`id:\s*['"]${guideId}['"]`);
-    const idMatch = fileContent.match(idLineRegex);
+    // 2. Find the correct guide object and insert the new note (Line-based approach)
+    const lines = fileContent.split('\n');
+    let guideStartIndex = -1;
+    let updateNotesLineIndex = -1;
 
-    if (!idMatch || idMatch.index === undefined) {
-      throw new Error(`Could not find line with id: ${guideId} in guideData.js`);
+    // Find the line index containing the guide ID
+    for (let i = 0; i < lines.length; i++) {
+        // Trim the line and check for the ID pattern using different quotes
+        const trimmedLine = lines[i].trim();
+        if (trimmedLine.startsWith(`id: '${guideId}'`) || trimmedLine.startsWith(`id: "${guideId}"`) || trimmedLine.startsWith(`id: \"${guideId}\"") || trimmedLine.startsWith(`id: \"${guideId}\"") ) {
+            guideStartIndex = i;
+            break;
+        }
     }
 
-    const searchStartIndex = idMatch.index;
-
-    // Find the *next* updateNotes line after the id line
-    const updateNotesLineRegex = /updateNotes:\s*['"`]/;
-    const updateNotesMatch = fileContent.substring(searchStartIndex).match(updateNotesLineRegex);
-
-    if (!updateNotesMatch || updateNotesMatch.index === undefined) {
-      throw new Error(`Could not find updateNotes field after id: ${guideId}`);
+    if (guideStartIndex === -1) {
+        throw new Error(`Could not find line starting with id: '${guideId}' in guideData.js`);
     }
 
-    // Calculate the precise insertion point: start index of the file content after the id + index of updateNotes within that substring + length of the matched 'updateNotes: "' part
-    const insertionPoint = searchStartIndex + updateNotesMatch.index + updateNotesMatch[0].length;
-
-    // Check if the updateNotes string is empty or just contains the initial quote
-    const closingQuoteChar = updateNotesMatch[0].slice(-1); // Get the quote character (' or " or `)
-    const closingQuoteIndex = fileContent.indexOf(closingQuoteChar, insertionPoint);
-    if (closingQuoteIndex === -1) {
-        throw new Error(`Could not find closing quote for updateNotes for guide id: ${guideId}`);
+    // Find the *next* line containing 'updateNotes:' starting from after the guide ID line
+    for (let i = guideStartIndex + 1; i < lines.length; i++) {
+        if (lines[i].trim().startsWith('updateNotes:')) {
+            updateNotesLineIndex = i;
+            break;
+        }
+        // Stop searching if we hit the end of the object '}' before finding updateNotes
+        if (lines[i].trim() === '}') {
+            break;
+        }
     }
-    const existingNotes = fileContent.substring(insertionPoint, closingQuoteIndex).trim();
 
-    let newNoteString;
+    if (updateNotesLineIndex === -1) {
+        throw new Error(`Could not find updateNotes line after id: '${guideId}'`);
+    }
+
+    // Prepare the new note line
     const formattedDate = new Date().toISOString().split('T')[0];
-    // Escape single quotes in the final text
-    const escapedFinalUpdateText = finalUpdateText.replace(/'/g, "\\'");
+    // Escape single quotes AND backticks within the final text for safety within the string literal
+    const escapedFinalUpdateText = finalUpdateText.replace(/['`]/g, "\\$&");
+    const newNoteContent = `* ${formattedDate}: ${escapedFinalUpdateText}`; // Content of the new note
 
-    if (existingNotes) {
-      // If notes exist, add a newline and indentation before the new note
-      newNoteString = `\n    * ${formattedDate}: ${escapedFinalUpdateText}`;
+    // Get the original updateNotes line and its indentation
+    const originalUpdateNotesLine = lines[updateNotesLineIndex];
+    const indentationMatch = originalUpdateNotesLine.match(/^(\s*)/);
+    const indentation = indentationMatch ? indentationMatch[1] : '  '; // Default indentation
+
+    // Determine the quote character used on the original line
+    const quoteCharMatch = originalUpdateNotesLine.match(/updateNotes:\s*(['"`])/);
+    const quoteChar = quoteCharMatch ? quoteCharMatch[1] : "'"; // Default to single quote
+
+    // Check if the updateNotes line currently has content
+    const currentNotesContentMatch = originalUpdateNotesLine.match(/updateNotes:\s*['"`](.*)['"`],?/);
+    const currentNotesContent = currentNotesContentMatch ? currentNotesContentMatch[1].trim() : null;
+
+    let updatedLines = [...lines]; // Create a copy
+
+    if (currentNotesContent) {
+        // If there's existing content, insert the new note line *after* the updateNotes line
+        // Ensure the new line has the correct indentation (usually +4 spaces relative to updateNotes line)
+        updatedLines.splice(updateNotesLineIndex + 1, 0, `${indentation}    ${newNoteContent}`); // Add 4 spaces for list item indent
     } else {
-      // If no notes exist (string is empty), just add the new note without leading newline/indentation
-      newNoteString = `* ${formattedDate}: ${escapedFinalUpdateText}`;
+        // If updateNotes is empty (e.g., 'updateNotes: \'\','), replace the line content
+        const endsWithComma = originalUpdateNotesLine.trim().endsWith(',');
+        updatedLines[updateNotesLineIndex] = `${indentation}updateNotes: ${quoteChar}${newNoteContent}${quoteChar}${endsWithComma ? ',' : ''}`;
     }
 
-    const updatedContent = fileContent.slice(0, insertionPoint) + newNoteString + fileContent.slice(insertionPoint);
+    const updatedContent = updatedLines.join('\n');
 
     // 3. Commit the updated content back to GitHub
     const commitMessage = `Update guideData.js: Add note for ${guideId}`;
@@ -126,8 +149,8 @@ async function updateGuideDataOnGitHub(guideId, finalUpdateText) {
 
   } catch (error) {
     console.error('Error updating guideData.js via GitHub:', error);
-    // Re-throw a more generic error to the client
-    throw new Error('Error updating guide data on server.');
+    // Re-throw a more specific error if possible, otherwise the generic one
+    throw new Error(error.message || 'Error updating guide data on server.');
   }
 }
 
@@ -164,7 +187,6 @@ export default async function handler(req, res) {
       await updateGuideDataOnGitHub(updateToProcess.guideId, finalUpdateText);
 
       // 2. Update status in pending list (or remove)
-      // For simplicity, we remove it. Alternatively, update status to 'Approved'.
       pendingUpdates.splice(updateIndex, 1);
       await writePendingUpdates(pendingUpdates);
 
