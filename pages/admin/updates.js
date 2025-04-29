@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 // Basic password protection (replace with a proper auth solution like NextAuth.js)
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'password'; // Use environment variable
 
 export default function AdminUpdatesDashboard() {
   const [updates, setUpdates] = useState([]);
@@ -11,6 +10,7 @@ export default function AdminUpdatesDashboard() {
   const [checkFeedsMessage, setCheckFeedsMessage] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState('');
+  const [loginError, setLoginError] = useState('');
 
   const fetchUpdates = async () => {
     setLoading(true);
@@ -58,14 +58,32 @@ export default function AdminUpdatesDashboard() {
     }
   };
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    if (password === ADMIN_PASSWORD) {
+ const handleLogin = async (e) => {
+  e.preventDefault();
+  setLoginError(''); // Clear previous errors
+  try {
+    const res = await fetch('/api/admin-login', { // Call the new API route
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ password }), // Send the entered password
+    });
+
+    const data = await res.json();
+
+    if (res.ok && data.success) {
+      sessionStorage.setItem('adminAuthenticated', 'true'); // Remember login in session
       setIsAuthenticated(true);
     } else {
-      alert('Incorrect password');
+      // Use error message from API or a default
+      setLoginError(data.message || 'Incorrect password');
     }
-  };
+  } catch (error) {
+      console.error("Login API call failed:", error);
+      setLoginError('Login failed. Please try again.');
+  }
+};
 
   if (!isAuthenticated) {
     return (
@@ -80,6 +98,7 @@ export default function AdminUpdatesDashboard() {
             style={{ width: '100%', padding: '10px', marginBottom: '10px' }}
             required
           />
+          {loginError && <p style={{ color: 'red', marginBottom: '10px' }}>{loginError}</p>} 
           <button type="submit" style={{ padding: '10px 20px' }}>Login</button>
         </form>
       </div>
