@@ -62,7 +62,7 @@ export default function AdminUpdatesDashboard() {
   e.preventDefault();
   setLoginError(''); // Clear previous errors
   try {
-    const res = await fetch('/api/admin-login', { // Call the new API route
+    const res = await fetch('/api/auth-check', { // Call the new API route
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
