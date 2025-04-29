@@ -4,40 +4,51 @@
  * This service monitors specified RSS feeds for updates relevant to the guides.
  */
 
-const Parser = require('rss-parser');
-const parser = new Parser();
+const Parser = require("rss-parser");
 
 // Define RSS feeds to monitor (example)
 const FEEDS = [
-  { name: 'OpenAI Blog', url: 'https://openai.com/blog/rss.xml', keywords: ['chatgpt', 'gpt-4', 'dall-e'] },
-  { name: 'Google AI Blog', url: 'https://ai.googleblog.com/feeds/posts/default', keywords: ['gemini', 'google ai'] },
+  { name: "OpenAI Blog", url: "https://openai.com/blog/rss.xml", keywords: ["chatgpt", "gpt-4", "dall-e"] },
+  { name: "Google AI Blog", url: "https://ai.googleblog.com/feeds/posts/default", keywords: ["gemini", "google ai"] },
   // Add more feeds (e.g., Midjourney announcements if available)
 ];
 
 // Keywords related to guides
 const GUIDE_KEYWORDS = {
-  'chatgpt': ['chatgpt', 'gpt-4', 'gpt-3', 'openai'],
-  'midjourney': ['midjourney'],
-  'dalle': ['dall-e', 'openai'],
-  'gemini': ['gemini', 'google ai'],
-  'ai-content-creation': ['ai content creation', 'content generation'],
-  'ai-prompts': ['prompt engineering', 'ai prompts'],
-  'chatgpt-longer-responses': ['chatgpt', 'longer responses'],
+  "chatgpt": ["chatgpt", "gpt-4", "gpt-3", "openai"],
+  "midjourney": ["midjourney"],
+  "dalle": ["dall-e", "openai"],
+  "gemini": ["gemini", "google ai"],
+  "ai-content-creation": ["ai content creation", "content generation"],
+  "ai-prompts": ["prompt engineering", "ai prompts"],
+  "chatgpt-longer-responses": ["chatgpt", "longer responses"],
 };
 
+// Initialize Parser with User-Agent
+const parser = new Parser({
+  requestOptions: {
+    headers: {
+      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36", // Add a common browser User-Agent
+    },
+  },
+  // Add any other customFields you might have had before, e.g.:
+  // customFields: { item: [["media:content", "mediaContent"]] }
+});
+
 async function checkFeeds() {
-  console.log('Checking RSS feeds for updates...');
+  console.log("Checking RSS feeds for updates...");
   let relevantUpdates = [];
 
   for (const feed of FEEDS) {
     try {
       console.log(`Fetching feed: ${feed.name}`);
+      // The parser instance now includes the User-Agent header in its requests
       const feedData = await parser.parseURL(feed.url);
       
       feedData.items.forEach(item => {
-        const itemTitle = item.title?.toLowerCase() || '';
-        const itemContent = item.contentSnippet?.toLowerCase() || item.content?.toLowerCase() || '';
-        const combinedText = itemTitle + ' ' + itemContent;
+        const itemTitle = item.title?.toLowerCase() || "";
+        const itemContent = item.contentSnippet?.toLowerCase() || item.content?.toLowerCase() || "";
+        const combinedText = itemTitle + " " + itemContent;
 
         // Check if the item is relevant to any guide based on keywords
         for (const guideId in GUIDE_KEYWORDS) {
