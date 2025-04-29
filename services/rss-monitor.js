@@ -6,10 +6,12 @@
 
 const Parser = require("rss-parser");
 
-// Define RSS feeds to monitor (example)
+// Define RSS feeds to monitor (Updated URLs based on research)
 const FEEDS = [
-  { name: "OpenAI Blog", url: "https://openai.com/blog/rss.xml", keywords: ["chatgpt", "gpt-4", "dall-e"] },
-  { name: "Google AI Blog", url: "https://ai.googleblog.com/feeds/posts/default", keywords: ["gemini", "google ai"] },
+  // Using an alternative feed for OpenAI due to persistent 403 errors on the official one
+  { name: "OpenAI Blog (Alternative Feed)", url: "https://jamesg.blog/openai.xml", keywords: ["chatgpt", "gpt-4", "dall-e", "openai"] }, 
+  // Updated URL for the official Google AI Blog feed
+  { name: "Google AI Blog", url: "https://blog.google/technology/ai/rss/", keywords: ["gemini", "google ai"] }, 
   // Add more feeds (e.g., Midjourney announcements if available)
 ];
 
@@ -41,7 +43,7 @@ async function checkFeeds() {
 
   for (const feed of FEEDS) {
     try {
-      console.log(`Fetching feed: ${feed.name}`);
+      console.log(`Fetching feed: ${feed.name} from ${feed.url}`);
       // The parser instance now includes the User-Agent header in its requests
       const feedData = await parser.parseURL(feed.url);
       
@@ -71,7 +73,8 @@ async function checkFeeds() {
         }
       });
     } catch (error) {
-      console.error(`Error fetching or parsing feed ${feed.name}:`, error);
+      // Log the specific feed URL that failed
+      console.error(`Error fetching or parsing feed ${feed.name} (${feed.url}):`, error);
     }
   }
 
