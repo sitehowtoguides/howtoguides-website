@@ -68,7 +68,7 @@ export const GUIDES = [
     image: '/images/logos/gemini-logo.png',
     color: '#8e44ad',
     lastUpdated: '2025-04-10', // Keep specific date if known
-    updateNotes: 'New Gemini AI Tutorial now available', 2025-04-29: Dolphin researchers are using Gemma and Google Pixel phones to try to decipher how dolphins talk to one another.'
+    updateNotes: 'New Gemini AI Tutorial now available', '2025-04-29: Dolphin researchers are using Gemma and Google Pixel phones to try to decipher how dolphins talk to one another.'
 
   },
   {
