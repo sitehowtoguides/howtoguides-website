@@ -12,6 +12,14 @@ export default function AdminUpdatesDashboard() {
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState('');
 
+  // *** ADDED: Check sessionStorage on component mount ***
+  useEffect(() => {
+    const storedAuth = sessionStorage.getItem("adminAuthenticated");
+    if (storedAuth === "true") {
+      setIsAuthenticated(true);
+    }
+  }, []); // Empty dependency array means run only once on mount
+
   const fetchUpdates = async () => {
     setLoading(true);
     try {
