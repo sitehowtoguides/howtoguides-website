@@ -103,6 +103,7 @@ async function updateGuideDataOnGitHub(guideId, finalUpdateText) {
         updateNotesLineIndex = i;
         break;
       }
+      // Stop searching if we hit the end of the current guide object
       if (lines[i].trim() === "}") {
         break;
       }
@@ -117,21 +118,22 @@ async function updateGuideDataOnGitHub(guideId, finalUpdateText) {
     
     // Determine the quote character used on the original line
     const originalUpdateNotesLine = lines[updateNotesLineIndex];
-    const quoteCharMatch = originalUpdateNotesLine.match(/updateNotes:\s*(['"`])/);
+    const quoteCharMatch = originalUpdateNotesLine.match(/updateNotes:\s*(["'`])/);
     const quoteChar = quoteCharMatch ? quoteCharMatch[1] : "'"; // Default to single quote
 
-    // *** FIXED: Correctly build the regex to escape backslashes and the specific quote character ***
-    const charsToEscape = ['\\', quoteChar]; // Always escape backslash, plus the quote char
+    // Escape backslashes and the specific quote character for the new text
+    const charsToEscape = ["\\", quoteChar]; // Always escape backslash, plus the quote char
     const escapePattern = charsToEscape.map(char => char.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')).join('|'); // Escape regex metachars in the chars themselves
     const escapeRegex = new RegExp(escapePattern, 'g');
     const escapedFinalUpdateText = finalUpdateText.replace(escapeRegex, "\\$&"); // Add a backslash before the matched char
 
     const newNoteString = `* ${formattedDate}: ${escapedFinalUpdateText}`; // Content of the new note
 
-    // Get the current content of the updateNotes string
+    // *** FIXED: Use regex with 's' flag to capture existing multi-line content ***
     const currentNotesContentMatch = originalUpdateNotesLine.match(
-      /updateNotes:\s*['"`](.*)['"`],?/
+      /updateNotes:\s*["'`](.*)["'`],?/s // Added 's' flag for dotAll
     );
+    // Extract content, trim leading/trailing whitespace from the captured group if it exists
     const currentNotesContent = currentNotesContentMatch
       ? currentNotesContentMatch[1].trim()
       : "";
@@ -139,6 +141,7 @@ async function updateGuideDataOnGitHub(guideId, finalUpdateText) {
     let updatedNotesContent;
     if (currentNotesContent) {
       // If notes exist, add the new note with a newline separator
+      // Ensure consistent newline and indentation
       updatedNotesContent = `${currentNotesContent}\n    ${newNoteString}`; // Add newline and indentation
     } else {
       // If no notes exist, just use the new note
