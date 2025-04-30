@@ -68,9 +68,7 @@ async function updateGuideDataOnGitHub(guideId, finalUpdateText) {
 
     // Find the line index containing the guide ID
     for (let i = 0; i < lines.length; i++) {
-        // Trim the line and check for the ID pattern using different quotes
         const trimmedLine = lines[i].trim();
-        // Corrected line: Check for single quotes or double quotes only
         if (trimmedLine.startsWith(`id: '${guideId}'`) || trimmedLine.startsWith(`id: "${guideId}"`) ) {
             guideStartIndex = i;
             break;
@@ -87,7 +85,6 @@ async function updateGuideDataOnGitHub(guideId, finalUpdateText) {
             updateNotesLineIndex = i;
             break;
         }
-        // Stop searching if we hit the end of the object '}' before finding updateNotes
         if (lines[i].trim() === '}') {
             break;
         }
@@ -97,38 +94,36 @@ async function updateGuideDataOnGitHub(guideId, finalUpdateText) {
         throw new Error(`Could not find updateNotes line after id: '${guideId}'`);
     }
 
-    // Prepare the new note line
+    // Prepare the new note content
     const formattedDate = new Date().toISOString().split('T')[0];
-    // Escape single quotes AND backticks within the final text for safety within the string literal
-    const escapedFinalUpdateText = finalUpdateText.replace(/['`]/g, "\\$&");
-    const newNoteContent = `* ${formattedDate}: ${escapedFinalUpdateText}`; // Content of the new note
-
-    // Get the original updateNotes line and its indentation
+    // Escape backticks and the quote character used in the updateNotes string
     const originalUpdateNotesLine = lines[updateNotesLineIndex];
-    const indentationMatch = originalUpdateNotesLine.match(/^(\s*)/);
-    const indentation = indentationMatch ? indentationMatch[1] : '  '; // Default indentation
-
-    // Determine the quote character used on the original line
     const quoteCharMatch = originalUpdateNotesLine.match(/updateNotes:\s*(['"`])/);
     const quoteChar = quoteCharMatch ? quoteCharMatch[1] : "'"; // Default to single quote
+    const escapeRegex = new RegExp(`[\\${quoteChar}\\]`, 'g'); // Escape backslash and the specific quote char
+    const escapedFinalUpdateText = finalUpdateText.replace(escapeRegex, "\\$&");
+    const newNoteString = `* ${formattedDate}: ${escapedFinalUpdateText}`; // Content of the new note
 
-    // Check if the updateNotes line currently has content
+    // Get the current content of the updateNotes string
     const currentNotesContentMatch = originalUpdateNotesLine.match(/updateNotes:\s*['"`](.*)['"`],?/);
-    const currentNotesContent = currentNotesContentMatch ? currentNotesContentMatch[1].trim() : null;
+    const currentNotesContent = currentNotesContentMatch ? currentNotesContentMatch[1].trim() : '';
 
-    let updatedLines = [...lines]; // Create a copy
-
+    let updatedNotesContent;
     if (currentNotesContent) {
-        // If there's existing content, insert the new note line *after* the updateNotes line
-        // Ensure the new line has the correct indentation (usually +4 spaces relative to updateNotes line)
-        updatedLines.splice(updateNotesLineIndex + 1, 0, `${indentation}    ${newNoteContent}`); // Add 4 spaces for list item indent
+        // If notes exist, add the new note with a newline separator
+        updatedNotesContent = `${currentNotesContent}\n    ${newNoteString}`; // Add newline and indentation
     } else {
-        // If updateNotes is empty (e.g., 'updateNotes: \'\','), replace the line content
-        const endsWithComma = originalUpdateNotesLine.trim().endsWith(',');
-        updatedLines[updateNotesLineIndex] = `${indentation}updateNotes: ${quoteChar}${newNoteContent}${quoteChar}${endsWithComma ? ',' : ''}`;
+        // If no notes exist, just use the new note
+        updatedNotesContent = newNoteString;
     }
 
-    const updatedContent = updatedLines.join('\n');
+    // Reconstruct the updateNotes line
+    const indentationMatch = originalUpdateNotesLine.match(/^(\s*)/);
+    const indentation = indentationMatch ? indentationMatch[1] : '  '; // Default indentation
+    const endsWithComma = originalUpdateNotesLine.trim().endsWith(',');
+    lines[updateNotesLineIndex] = `${indentation}updateNotes: ${quoteChar}${updatedNotesContent}${quoteChar}${endsWithComma ? ',' : ''}`;
+
+    const updatedContent = lines.join('\n');
 
     // 3. Commit the updated content back to GitHub
     const commitMessage = `Update guideData.js: Add note for ${guideId}`;
@@ -150,7 +145,6 @@ async function updateGuideDataOnGitHub(guideId, finalUpdateText) {
 
   } catch (error) {
     console.error('Error updating guideData.js via GitHub:', error);
-    // Re-throw a more specific error if possible, otherwise the generic one
     throw new Error(error.message || 'Error updating guide data on server.');
   }
 }
@@ -162,7 +156,6 @@ export default async function handler(req, res) {
 
   const { id, action, finalUpdateText } = req.body;
 
-  // Basic validation
   if (!id || !action) {
     return res.status(400).json({ message: 'Missing required fields: id, action' });
   }
@@ -181,27 +174,17 @@ export default async function handler(req, res) {
     const updateToProcess = pendingUpdates[updateIndex];
 
     if (action === 'approve') {
-      // --- Approval Logic --- 
       console.log(`Approving update ${id} for guide ${updateToProcess.guideId}`);
-      
-      // 1. Update guideData.js on GitHub
       await updateGuideDataOnGitHub(updateToProcess.guideId, finalUpdateText);
-
-      // 2. Update status in pending list (or remove)
       pendingUpdates.splice(updateIndex, 1);
       await writePendingUpdates(pendingUpdates);
-
       console.log(`Update ${id} approved and removed from pending list.`);
       res.status(200).json({ success: true, message: 'Update approved successfully.' });
 
     } else if (action === 'reject') {
-      // --- Rejection Logic --- 
       console.log(`Rejecting update ${id}`);
-      
-      // Remove from pending list
       pendingUpdates.splice(updateIndex, 1);
       await writePendingUpdates(pendingUpdates);
-
       console.log(`Update ${id} rejected and removed from pending list.`);
       res.status(200).json({ success: true, message: 'Update rejected successfully.' });
 
@@ -211,7 +194,6 @@ export default async function handler(req, res) {
 
   } catch (error) {
     console.error('Error processing update action:', error);
-    // Use the specific error message if available, otherwise a generic one
     res.status(500).json({ success: false, message: error.message || 'An internal server error occurred.' });
   }
 }
