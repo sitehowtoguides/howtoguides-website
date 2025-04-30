@@ -68,7 +68,7 @@ export const GUIDES = [
     image: '/images/logos/gemini-logo.png',
     color: '#8e44ad',
     lastUpdated: '2025-04-10', // Keep specific date if known
-    updateNotes: '* 2025-04-30: Today at Google Cloud Next we announced updates and new tools for Gemini in Workspace.To start, we\`re bringing audio capabilities directly into Google Docs so you\`ll be -\n    * 2025-04-30: At Google Cloud Next 25, L\'Oréal, Reddit, Deutsche Bank '\n    * 2025-04-30: Imagine being able to get complex insights about our planet '\n    * 2025-04-30: Dolphin researchers are using Gemma and Google Pixel phones to try to decipher how dolphins talk to one another.',
+    updateNotes: '* 2025-04-30: Today at Google Cloud Next we announced updates and new tools for Gemini in Workspace.To start, we're bringing audio capabilities directly into Google Docs so you'll be -\n    * 2025-04-30: At Google Cloud Next 25, L'Oréal, Reddit, Deutsche Bank '\n    * 2025-04-30: Imagine being able to get complex insights about our planet '\n    * 2025-04-30: Dolphin researchers are using Gemma and Google Pixel phones to try to decipher how dolphins talk to one another.',
   },
   {
     id: 'aiContentCreation',
